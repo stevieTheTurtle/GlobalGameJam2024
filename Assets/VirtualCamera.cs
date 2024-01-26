@@ -10,25 +10,42 @@ public class VirtualCameraControl : MonoBehaviour
     [SerializeField] private float minDistance;
     [SerializeField] private float maxDistance;
 
-    // Optional: parameters for adjusting the field of view
-    [SerializeField] private float minFieldOfView = 10f;
-    [SerializeField] private float maxFieldOfView = 60f;
+    private CinemachineFramingTransposer framingTransposer;
+
+    [SerializeField] private float minCameraDistance = 10f;
+    [SerializeField] private float maxCameraDistance = 60f;
+
+    private void Start()
+    {
+        if (virtualCamera != null)
+        {
+            // Get the CinemachineFramingTransposer component
+            framingTransposer = virtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
+            if (framingTransposer == null)
+            {
+                Debug.LogError("CinemachineFramingTransposer component not found.");
+            }
+        }
+        else
+        {
+            Debug.LogError("Virtual camera is not assigned.");
+        }
+    }
 
     // Update is called once per frame
     void Update()
     {
-        if (a != null && b != null && virtualCamera != null)
+        if (framingTransposer != null && a != null && b != null)
         {
-            // Calculate the distance between the two objects
             float distance = Vector3.Distance(a.position, b.position);
+            distance = Mathf.Clamp(distance, minDistance, maxDistance);
 
-            distance = distance < minDistance ? minDistance : distance;
+            // Calculate the camera distance directly proportional to the objects' distance
+            float proportion = (distance - minDistance) / (maxDistance - minDistance);
+            float targetCameraDistance = minCameraDistance + proportion * (maxCameraDistance - minCameraDistance);
 
-            // Adjust the field of view based on the distance
-            // Here, you'll need to determine how the distance affects the field of view.
-            // This is a simple linear mapping example:
-            float targetFieldOfView = Mathf.Lerp(minFieldOfView, maxFieldOfView, distance/maxDistance);
-            virtualCamera.m_Lens.FieldOfView = Mathf.Clamp(targetFieldOfView, minFieldOfView, maxFieldOfView);
+            // Adjust the camera distance
+            framingTransposer.m_CameraDistance = targetCameraDistance;
         }
     }
 }
