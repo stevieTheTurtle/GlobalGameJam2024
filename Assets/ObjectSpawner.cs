@@ -7,22 +7,36 @@ public class ObjectSpawner : MonoBehaviour
 {
     [SerializeField]
     private List<GameObject> objects;
+
+    [SerializeField] 
+    private List<Transform> spawnPoints;
+
+    [SerializeField]
+    private float timerMilliseconds = 3f;
+    private float timeCounter;
     
     void Start()
     {
-        Timer t = new Timer();
-        t.Elapsed += new ElapsedEventHandler(OnTimer);
-        t.Interval = 3000;
-        t.Start();
+        timeCounter = timerMilliseconds;
     }
     
     void Update()
     {
+        timeCounter -= Time.deltaTime;
         
+        if (timeCounter <= 0f)
+        {
+            Debug.Log("Timer elapsed, spawning object");
+            int objectIndex = Random.Range(0, objects.Count);
+            int spawnPointIndex = Random.Range(0, spawnPoints.Count);
+            SpawnObject(objects[objectIndex], spawnPoints[spawnPointIndex]);
+            
+            timeCounter = timerMilliseconds;
+        }
     }
-    
-    void OnTimer(object source, ElapsedEventArgs e)
+
+    void SpawnObject(GameObject obj, Transform spawnPoint)
     {
-        Debug.Log("Timer elapsed");
+        Instantiate(obj, spawnPoint.position, spawnPoint.rotation);
     }
 }
