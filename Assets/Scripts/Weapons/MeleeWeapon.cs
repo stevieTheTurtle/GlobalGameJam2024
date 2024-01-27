@@ -15,13 +15,13 @@ public class MeleeWeapon : HarmingObject, IWeapon
             audioSource = gameObject.AddComponent<AudioSource>();
     }
 
-    public void UseWeapon()
+    public void Attack()
     {
         Debug.Log(this.gameObject.name + "has been used.");
         PlayAttackSound();
     }
 
-    public void ReleaseWeapon()
+    public void Release()
     {
         Debug.Log(this.gameObject.name + "has been used.");
         //TODO: play release sound??
@@ -51,4 +51,5 @@ public class MeleeWeapon : HarmingObject, IWeapon
         audioSource.clip = attackSound;
         audioSource.Play();
     }
+    
 }
