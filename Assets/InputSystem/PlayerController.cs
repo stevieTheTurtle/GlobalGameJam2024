@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour
         }
 
         Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        move = move.normalized * Mathf.Clamp(move.magnitude, 0f, 1f);
+        
         controller.Move(move * Time.deltaTime * playerSpeed);
 
         if (move != Vector3.zero)
