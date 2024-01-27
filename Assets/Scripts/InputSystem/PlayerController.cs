@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void OnTest(InputAction.CallbackContext context)
+    public void OnInteract(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
@@ -100,6 +100,7 @@ public class PlayerController : MonoBehaviour
 
         if (isTryingToInteract && overlappingCollectTriggers.Count > 0)
         {
+            Debug.Log("Interacting with "+overlappingCollectTriggers[0].gameObject.name);
             overlappingCollectTriggers[0].Interact(this.GetComponent<PlayerManager>());
             overlappingCollectTriggers.RemoveAt(0);
         }
@@ -109,18 +110,22 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //Debug.Log(this.gameObject.name+" entered trigger of "+other.gameObject.name);
         CollectTrigger collectTrigger = other.GetComponentInChildren<CollectTrigger>();
         if (collectTrigger != null)
         {
+            //Debug.Log("adding "+collectTrigger.gameObject.name+" to overlapping collect triggers");
             overlappingCollectTriggers.Add(collectTrigger);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
+        //Debug.Log(this.gameObject.name+" entered trigger of "+other.gameObject.name);
         CollectTrigger collectTrigger = other.GetComponentInChildren<CollectTrigger>();
         if (collectTrigger != null)
         {
+            //Debug.Log("removing "+collectTrigger.gameObject.name+" to overlapping collect triggers");
             overlappingCollectTriggers.Remove(collectTrigger);
         }
     }

@@ -204,7 +204,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6679948706680019831}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: OnTest
+        m_MethodName: OnInteract
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -266,6 +266,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 4
+  dashDuration: 0.5
+  dashSpeedMultiplier: 3
+  dashCooldown: 2
 --- !u!54 &3442470756419129147
 Rigidbody:
   m_ObjectHideFlags: 0

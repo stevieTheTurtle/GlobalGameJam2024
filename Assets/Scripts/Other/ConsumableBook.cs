@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(MeshFilter))]
 [RequireComponent(typeof(MeshRenderer))]
@@ -23,7 +25,25 @@ public class ConsumableBook : MonoBehaviour, ICollectable
     [SerializeField] private AudioClip sadSound;
     [SerializeField] private AudioClip hentaiSound;
     [SerializeField] private AudioSource audioSource;
-    
+
+    private void Start()
+    {
+        if (sadBookModel == null)
+            Debug.LogError("No sad book model found on " + this.gameObject.name + ".");
+        
+        if (hentaiBookModel == null)
+            Debug.LogError("No hentai book model found on " + this.gameObject.name + ".");
+        
+        if (sadSound == null)
+            Debug.LogError("No sad sound found on " + this.gameObject.name + ".");
+        
+        if (hentaiSound == null)
+            Debug.LogError("No hentai sound found on " + this.gameObject.name + ".");
+        
+        if (audioSource == null)
+            Debug.LogError("No audio source found on " + this.gameObject.name + ".");
+    }
+
     public void CollectObjectFor(PlayerManager playerManager)
     {
         this.transform.parent = playerManager.transform;
