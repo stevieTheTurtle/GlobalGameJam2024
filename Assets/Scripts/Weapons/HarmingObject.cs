@@ -6,7 +6,7 @@ using UnityEngine;
 ///</summary>
 public class HarmingObject : MonoBehaviour
 {
-    public float Damage { get; private set; }
+    [SerializeField] private float Damage = 10f;
     [SerializeField] protected AudioClip hitSound;
     [SerializeField] protected AudioSource audioSource;
     

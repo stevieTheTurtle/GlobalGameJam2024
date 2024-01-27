@@ -10,6 +10,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
     [SerializeField] private float _currentHealth;
 
     private PlayerInput _playerInput; // Reference to the PlayerInput component
+    private bool isLaughing = false;
 
     void Start()
     {
@@ -39,15 +40,18 @@ public class PlayerManager : MonoBehaviour, IDamageable
 
     private void Die()
     {
+        if (isLaughing) { return; }
+        isLaughing = true;
         Debug.Log("Player died.");
 
-        // Disable Player Input
+        // Disable specific action maps
         if (_playerInput != null)
         {
-            _playerInput.enabled = false;
+            _playerInput.actions.FindActionMap("Gameplay").Disable(); // Example action map name
+            this.transform.Rotate(90, 0, 0);
         }
 
-        // Start the coroutine to re-enable input after 2 seconds
+        // Start the coroutine to re-enable input after delay
         StartCoroutine(ReEnableInputAfterDelay(LAUGH_STUN));
     }
 
@@ -56,10 +60,14 @@ public class PlayerManager : MonoBehaviour, IDamageable
         // Wait for the specified delay
         yield return new WaitForSeconds(delay);
 
-        // Re-enable Player Input
+        // Re-enable specific action maps
         if (_playerInput != null)
         {
-            _playerInput.enabled = true;
+            _playerInput.actions.FindActionMap("Gameplay").Enable(); // Example action map name
+            this.transform.Rotate(-90, 0, 0);
         }
+        isLaughing = false;
+        _currentHealth = MAX_HEALTH;
     }
+
 }
