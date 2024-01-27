@@ -24,7 +24,6 @@ public class CollectTrigger : MonoBehaviour
     public void Interact(PlayerManager playerManager)
     {
         collectableObject.CollectObjectFor(playerManager);
-        collectableObject.GetTransform().parent = playerManager.transform;
         Destroy(this.gameObject);
     }
 }

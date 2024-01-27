@@ -52,15 +52,16 @@ public class ConsumableBook : MonoBehaviour, ICollectable
         {
             //SUCCESS CONDITION
             Debug.Log("Player got a sad book!");
-            StartCoroutine(successCoroutine(playerManager));
-            PlaySadSound();
+            StartCoroutine(animationCoroutine(playerManager));
+            //PlaySadSound();
             playerManager.Heal(healAmount);
         }
         else
         {
             //FAILURE CONDITION
             Debug.Log("Player got an hentai book!");
-            PlayHentaiSound();
+            StartCoroutine(animationCoroutine(playerManager));
+            //PlayHentaiSound();
             playerManager.TakeDamage(damageAmount);
         }
     }
@@ -70,24 +71,13 @@ public class ConsumableBook : MonoBehaviour, ICollectable
         return this.transform;
     }
 
-    IEnumerator successCoroutine(PlayerManager playerManager)
+    IEnumerator animationCoroutine(PlayerManager playerManager)
     {
         GameObject sadBook = Instantiate(sadBookModel, playerManager.transform.position, Quaternion.identity);
         sadBook.transform.parent = playerManager.transform;
         sadBook.transform.localPosition = new Vector3(0, 1f, 1f);
         
-        yield return new WaitForSeconds(animationMillis * 1000f);
-        
-        Destroy(this.gameObject);
-    }
-    
-    IEnumerator failureCoroutine(PlayerManager playerManager)
-    {
-        GameObject sadBook = Instantiate(sadBookModel, playerManager.transform.position, Quaternion.identity);
-        sadBook.transform.parent = playerManager.transform;
-        sadBook.transform.localPosition = new Vector3(0, 1f, 1f);
-        
-        yield return new WaitForSeconds(animationMillis * 1000f);
+        yield return new WaitForSeconds(animationMillis / 1000f);
         
         Destroy(this.gameObject);
     }
