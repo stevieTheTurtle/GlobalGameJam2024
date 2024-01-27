@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4580813177152115713}
   - component: {fileID: 6813552208821123013}
   - component: {fileID: 4303996224812091615}
+  - component: {fileID: 5280736208211753580}
   m_Layer: 0
   m_Name: Dild
   m_TagString: Untagged
@@ -83,3 +84,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &5280736208211753580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440472802871258600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baa3d8f9edd4df344b94dab390c33c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitSound: {fileID: 0}
+  audioSource: {fileID: 0}
+  attackSound: {fileID: 0}
