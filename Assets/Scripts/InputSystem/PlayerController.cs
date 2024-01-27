@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,6 +21,9 @@ public class PlayerController : MonoBehaviour
 
     private List<CollectTrigger> overlappingCollectTriggers;
     public bool isTryingToInteract { get; set; }
+
+    public ICollectable HoldedItem;
+    public bool IsHoldingSomething;
 
     private void Start()
     {
@@ -64,7 +68,11 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed)
         {
-            Debug.Log("Attacking");
+            if (HoldedItem is IWeapon weapon) //I mean if the holded item also imlements IWeapon as well
+            {
+                Debug.Log("Attacking");
+                weapon.Attack();
+            }
         }
     }
 
@@ -106,6 +114,10 @@ public class PlayerController : MonoBehaviour
         }
 
         isTryingToInteract = false;
+
+        HoldedItem = GetComponentInChildren<ICollectable>();
+        IsHoldingSomething = HoldedItem != null;
+
     }
 
     private void OnTriggerEnter(Collider other)
