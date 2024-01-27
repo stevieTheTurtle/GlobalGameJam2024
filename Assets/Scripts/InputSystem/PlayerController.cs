@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
         //Tries to collect object in the frame
         if (isTryingToInteract)
         {
-            overlappingCollectTriggers[0].CollectObject();
+            overlappingCollectTriggers[0].Interact(this.GetComponent<PlayerManager>());
             overlappingCollectTriggers.RemoveAt(0);
         }
         
