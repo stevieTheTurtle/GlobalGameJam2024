@@ -23,7 +23,7 @@ public class HarmingObject : MonoBehaviour
             Debug.LogWarning("No audio source found on " + this.gameObject.name + ".");
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.TryGetComponent(out IDamageable damageable))
         {
