@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 ///<summary>
@@ -31,6 +32,7 @@ public class HarmingObject : MonoBehaviour
             //Play hit sound
             PlayHitSound();
             //Degrade weapon???
+            Destroy(this.gameObject);
         }
     }
     
