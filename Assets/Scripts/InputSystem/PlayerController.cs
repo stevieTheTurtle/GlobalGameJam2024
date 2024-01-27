@@ -100,7 +100,7 @@ public class PlayerController : MonoBehaviour
 
         if (isTryingToInteract && overlappingCollectTriggers.Count > 0)
         {
-            overlappingCollectTriggers[0].CollectObject();
+            overlappingCollectTriggers[0].Interact(this.GetComponent<PlayerManager>());
             overlappingCollectTriggers.RemoveAt(0);
         }
 

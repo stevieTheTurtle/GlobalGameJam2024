@@ -6,7 +6,8 @@ using UnityEngine;
 public abstract class CollectTrigger : MonoBehaviour
 {
     private Collider collider;
-    private GameObject collectableObject;
+    private ICollectable collectableObject; //TODO: improve modularity
+    
     private void Start()
     {
         collider = this.GetComponentInChildren<Collider>();
@@ -16,5 +17,13 @@ public abstract class CollectTrigger : MonoBehaviour
         collider.isTrigger = true;
     }
 
-    public abstract void CollectObject();
+    public void Interact(PlayerManager playerManager)
+    {
+        if (collectableObject != null)
+        {
+            collectableObject.CollectObjectFor(playerManager);
+            collectableObject.GetTransform().parent = playerManager.transform;
+            Destroy(this.gameObject);
+        }
+    }
 }
