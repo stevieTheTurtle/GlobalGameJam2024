@@ -76,6 +76,7 @@ public class ConsumableBook : MonoBehaviour, ICollectable
         GameObject sadBook = Instantiate(sadBookModel, playerManager.transform.position, Quaternion.identity);
         sadBook.transform.parent = playerManager.transform;
         sadBook.transform.localPosition = new Vector3(0, 1f, 1f);
+        sadBook.transform.localRotation = Quaternion.Euler(0, 0, 0);
         
         yield return new WaitForSeconds(animationMillis / 1000f);
         
