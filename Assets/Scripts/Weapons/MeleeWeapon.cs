@@ -27,18 +27,6 @@ public class MeleeWeapon : HarmingObject, IWeapon
         //TODO: play release sound??
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.TryGetComponent(out IDamageable damageable))
-        {
-            //Damage the other object
-            damageable.Damage(Damage);
-            //Play hit sound
-            PlayHitSound();
-            //Degrade weapon???
-        }
-    }
-
     private void PlayHitSound()
     {
         audioSource.clip = hitSound;

@@ -9,7 +9,7 @@ using UnityEngine;
 ///</summary>
 public class HarmingObject : MonoBehaviour
 {
-    private float Damage { get; set; }
+    public float Damage { get; private set; }
     [SerializeField] protected AudioClip hitSound;
     [SerializeField] protected AudioSource audioSource;
     
@@ -28,10 +28,10 @@ public class HarmingObject : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.TryGetComponent(out IDameageble damageable))
+        if (other.gameObject.TryGetComponent(out IDamageable damageable))
         {
             //Damage the other object
-            damageable.Damage(Damage);
+            damageable.TakeDamage(Damage);
             //Play hit sound
             PlayHitSound();
             //Degrade weapon???
