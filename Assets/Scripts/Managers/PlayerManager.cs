@@ -6,7 +6,8 @@ public class PlayerManager : MonoBehaviour, IDamageable
 {
     public const float MAX_HEALTH = 100;
     public const float LAUGH_STUN = 4f;
-    private float _currentHealth { get; set; }
+
+    [SerializeField] private float _currentHealth;
 
     private PlayerInput _playerInput; // Reference to the PlayerInput component
 

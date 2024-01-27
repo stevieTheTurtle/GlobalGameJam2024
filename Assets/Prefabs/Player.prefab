@@ -119,6 +119,7 @@ GameObject:
   - component: {fileID: 1311417493008032518}
   - component: {fileID: 2055925718481663335}
   - component: {fileID: 6679948706680019831}
+  - component: {fileID: 4039745210628422239}
   - component: {fileID: 3442470756419129147}
   m_Layer: 0
   m_Name: Player
@@ -204,7 +205,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6679948706680019831}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: OnTest
+        m_MethodName: OnInteract
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -266,6 +267,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 4
+  dashDuration: 0.5
+  dashSpeedMultiplier: 3
+  dashCooldown: 2
+--- !u!114 &4039745210628422239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4222988197362995699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d264575ebd8938c42b4939e70f1850ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!54 &3442470756419129147
 Rigidbody:
   m_ObjectHideFlags: 0

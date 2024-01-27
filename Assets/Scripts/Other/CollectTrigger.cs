@@ -3,13 +3,17 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
-public abstract class CollectTrigger : MonoBehaviour
+public class CollectTrigger : MonoBehaviour
 {
     private Collider collider;
-    private ICollectable collectableObject; //TODO: improve modularity
+    private ICollectable collectableObject;
     
     private void Start()
     {
+        collectableObject = GetComponentInChildren<ICollectable>();
+        if(collectableObject == null)
+            Debug.LogError("No ICollectable found on " + this.gameObject.name + " or its children.");
+        
         collider = this.GetComponentInChildren<Collider>();
         if(collider == null)
             Debug.LogError("No collider found on " + this.gameObject.name + " or its children.");
@@ -19,11 +23,7 @@ public abstract class CollectTrigger : MonoBehaviour
 
     public void Interact(PlayerManager playerManager)
     {
-        if (collectableObject != null)
-        {
-            collectableObject.CollectObjectFor(playerManager);
-            collectableObject.GetTransform().parent = playerManager.transform;
-            Destroy(this.gameObject);
-        }
+        collectableObject.CollectObjectFor(playerManager);
+        Destroy(this.gameObject);
     }
 }
