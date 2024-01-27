@@ -633,6 +633,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff00d57394d27a543858e17047109a5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collider: {fileID: 0}
+  collectableObjectGO: {fileID: 0}
 --- !u!135 &691196185
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1019,6 +1021,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff00d57394d27a543858e17047109a5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collider: {fileID: 0}
+  collectableObjectGO: {fileID: 0}
 --- !u!135 &1520992623
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1159,6 +1163,11 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 6734748993437348434, guid: 2cf30c6d87191a04b94c828aa83041fb, type: 3}
   m_PrefabInstance: {fileID: 3571435883631066696}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &1927151475 stripped
+SphereCollider:
+  m_CorrespondingSourceObject: {fileID: 2734745324408481522, guid: 1bac131e2d6a7834a993a265ef3704a7, type: 3}
+  m_PrefabInstance: {fileID: 6377997785958754122}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1995170691
 GameObject:
@@ -1358,6 +1367,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4147136701623704848, guid: 1bac131e2d6a7834a993a265ef3704a7, type: 3}
+      propertyPath: collider
+      value: 
+      objectReference: {fileID: 1927151475}
+    - target: {fileID: 4982216035762892073, guid: 1bac131e2d6a7834a993a265ef3704a7, type: 3}
+      propertyPath: animationMillis
+      value: 1500
+      objectReference: {fileID: 0}
     - target: {fileID: 4982216035762892073, guid: 1bac131e2d6a7834a993a265ef3704a7, type: 3}
       propertyPath: probabilityOfSuccess
       value: 0.75

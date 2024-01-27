@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(MeshFilter))]
 [RequireComponent(typeof(MeshRenderer))]
-
+[Serializable]
 public class ConsumableBook : MonoBehaviour, ICollectable
 {
     
@@ -15,7 +15,7 @@ public class ConsumableBook : MonoBehaviour, ICollectable
     [SerializeField] private float damageAmount = 10f;
     [SerializeField] private float healAmount = 10f;
     
-    [SerializeField] private float animationMillis = 500f;
+    [SerializeField] private float animationMillis = 1500f;
     
     [Header("Visuals")]
     [SerializeField] private GameObject sadBookModel;
@@ -47,12 +47,13 @@ public class ConsumableBook : MonoBehaviour, ICollectable
     public void CollectObjectFor(PlayerManager playerManager)
     {
         this.transform.parent = playerManager.transform;
+        this.transform.localPosition = new Vector3(0, 1f, 1f);
+        this.transform.localRotation = Quaternion.identity;
         
         if (Random.value < probabilityOfSuccess)
         {
             //SUCCESS CONDITION
             Debug.Log("Player got a sad book!");
-            StartCoroutine(animationCoroutine(playerManager));
             //PlaySadSound();
             playerManager.Heal(healAmount);
         }
@@ -60,27 +61,21 @@ public class ConsumableBook : MonoBehaviour, ICollectable
         {
             //FAILURE CONDITION
             Debug.Log("Player got an hentai book!");
-            StartCoroutine(animationCoroutine(playerManager));
             //PlayHentaiSound();
             playerManager.TakeDamage(damageAmount);
         }
+        
+        this.GetComponent<MeshRenderer>().enabled = false;
+        GameObject sadBook = Instantiate(sadBookModel, this.transform.position, Quaternion.identity);
+        sadBook.transform.parent = this.transform;
+        
+        Debug.Log("Destroying " + this.gameObject.name + " after being collected.");
+        Destroy(this.gameObject, animationMillis/1000f);
     }
 
     public Transform GetTransform()
     {
         return this.transform;
-    }
-
-    IEnumerator animationCoroutine(PlayerManager playerManager)
-    {
-        GameObject sadBook = Instantiate(sadBookModel, playerManager.transform.position, Quaternion.identity);
-        sadBook.transform.parent = playerManager.transform;
-        sadBook.transform.localPosition = new Vector3(0, 1f, 1f);
-        sadBook.transform.localRotation = Quaternion.Euler(0, 0, 0);
-        
-        yield return new WaitForSeconds(animationMillis / 1000f);
-        
-        Destroy(this.gameObject);
     }
     
     private void PlayHentaiSound()
