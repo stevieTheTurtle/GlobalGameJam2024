@@ -115,7 +115,8 @@ public class PlayerController : MonoBehaviour
         if (collectTrigger != null)
         {
             //Debug.Log("adding "+collectTrigger.gameObject.name+" to overlapping collect triggers");
-            overlappingCollectTriggers.Add(collectTrigger);
+            if(!overlappingCollectTriggers.Contains(collectTrigger))
+                overlappingCollectTriggers.Add(collectTrigger);
         }
     }
 
@@ -126,7 +127,8 @@ public class PlayerController : MonoBehaviour
         if (collectTrigger != null)
         {
             //Debug.Log("removing "+collectTrigger.gameObject.name+" to overlapping collect triggers");
-            overlappingCollectTriggers.Remove(collectTrigger);
+            if(overlappingCollectTriggers.Contains(collectTrigger))
+                overlappingCollectTriggers.Remove(collectTrigger);
         }
     }
 }
