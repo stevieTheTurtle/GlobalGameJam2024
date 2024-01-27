@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float playerSpeed = 2.0f;
+    [SerializeField] private float playerSpeed = 4.0f;
 
     private CharacterController controller;
     private Vector3 playerVelocity;
@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
     }
     public void OnTest(InputAction.CallbackContext context)
     {
+        Debug.Log("Testing");
         IDamageable damageable;
         if (this.TryGetComponent<IDamageable>(out damageable))
         {
@@ -37,7 +38,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            // The component was not found
+            Debug.Log("IDamageable not found");
         }
 
     }

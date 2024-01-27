@@ -1,49 +1,64 @@
 using UnityEngine;
+using System.Collections;
+using UnityEngine.InputSystem;
 
 public class PlayerManager : MonoBehaviour, IDamageable
 {
-    public const float MAX_Health = 100;
+    public const float MAX_HEALTH = 100;
+    public const float LAUGH_STUN = 4f;
+    private float _currentHealth { get; set; }
 
-    // Public implementation of the Health property from IDamageable
-    public float Health { get; set; }
+    private PlayerInput _playerInput; // Reference to the PlayerInput component
 
-    // Start is called before the first frame update
     void Start()
     {
-        Health = MAX_Health;
+        _currentHealth = MAX_HEALTH;
+        _playerInput = GetComponent<PlayerInput>(); // Get the PlayerInput component
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    // Implement the TakeDamage method
     public void TakeDamage(float amount)
     {
-        Health -= amount;
-        if (Health <= 0)
+        _currentHealth -= amount;
+        if (_currentHealth <= 0)
         {
-            // Handle what happens when health is depleted
+            Die();
         }
     }
 
-    // Implement the IsAlive method
     public bool IsAlive()
     {
-        return Health > 0;
+        return _currentHealth > 0;
     }
 
-    // Implement the Heal method
     public void Heal(float amount)
     {
-        Health += amount;
-        Health = Mathf.Clamp(Health, 0, MAX_Health);
+        _currentHealth += amount;
+        _currentHealth = Mathf.Clamp(_currentHealth, 0, MAX_HEALTH);
     }
 
-    public void Die()
+    private void Die()
     {
+        Debug.Log("Player died.");
 
+        // Disable Player Input
+        if (_playerInput != null)
+        {
+            _playerInput.enabled = false;
+        }
+
+        // Start the coroutine to re-enable input after 2 seconds
+        StartCoroutine(ReEnableInputAfterDelay(LAUGH_STUN));
+    }
+
+    private IEnumerator ReEnableInputAfterDelay(float delay)
+    {
+        // Wait for the specified delay
+        yield return new WaitForSeconds(delay);
+
+        // Re-enable Player Input
+        if (_playerInput != null)
+        {
+            _playerInput.enabled = true;
+        }
     }
 }
