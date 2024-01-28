@@ -85,7 +85,12 @@ public class PlayerManager : MonoBehaviour, IDamageable
             _playerInput.actions.FindActionMap("Gameplay").Disable();
 
             // Find and disable the child GameObject named "Visual"
-            Transform visualChild = transform.Find("Visual");
+            Transform visualChild = transform.Find("Visuals");
+            Collider childCollider = GetComponent<Collider>();
+            if (childCollider != null)
+            {
+                childCollider.enabled = false;
+            }
             if (visualChild != null)
             {
                 visualChild.gameObject.SetActive(false);
