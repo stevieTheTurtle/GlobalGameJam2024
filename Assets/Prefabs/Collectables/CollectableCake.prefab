@@ -31,7 +31,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3895900553346410435}
+  - {fileID: 2324948928052402977}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &5336461680756631717
@@ -68,8 +68,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collider: {fileID: 5336461680756631717}
-  collectableObjectGO: {fileID: 1125770264206761514}
---- !u!1001 &685485821563859906
+  collectableObjectGO: {fileID: 1859263464538972872}
+--- !u!1001 &2292809308719124256
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -79,7 +79,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 440472802871258600, guid: f237db68b9897db4fbc401e7cca73bfb, type: 3}
       propertyPath: m_Name
-      value: Cake
+      value: CakeWeapon
       objectReference: {fileID: 0}
     - target: {fileID: 4580813177152115713, guid: f237db68b9897db4fbc401e7cca73bfb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -126,13 +126,13 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f237db68b9897db4fbc401e7cca73bfb, type: 3}
---- !u!1 &1125770264206761514 stripped
+--- !u!1 &1859263464538972872 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 440472802871258600, guid: f237db68b9897db4fbc401e7cca73bfb, type: 3}
-  m_PrefabInstance: {fileID: 685485821563859906}
+  m_PrefabInstance: {fileID: 2292809308719124256}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &3895900553346410435 stripped
+--- !u!4 &2324948928052402977 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4580813177152115713, guid: f237db68b9897db4fbc401e7cca73bfb, type: 3}
-  m_PrefabInstance: {fileID: 685485821563859906}
+  m_PrefabInstance: {fileID: 2292809308719124256}
   m_PrefabAsset: {fileID: 0}

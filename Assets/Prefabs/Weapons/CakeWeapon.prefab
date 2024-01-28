@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4580813177152115713}
   - component: {fileID: 3449100905200151356}
   - component: {fileID: 3283871839782193364}
+  - component: {fileID: 1016051809528861207}
   m_Layer: 0
   m_Name: CakeWeapon
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.099999994, z: 0.5}
+  m_LocalScale: {x: 1, y: 0.19999999, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5230408409794695406}
@@ -84,6 +85,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1016051809528861207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440472802871258600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9d9b9e5c978b0c4a83f8086f4474305, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _projectile: {fileID: 440472802871258600, guid: 322993982fc19084c93b7e7f4c7e9fef, type: 3}
+  _firePoint: {fileID: 5230408409794695406}
+  ammoCount: 1
 --- !u!1 &4214238490247625164
 GameObject:
   m_ObjectHideFlags: 0
