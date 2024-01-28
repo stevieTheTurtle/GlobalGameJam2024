@@ -100,6 +100,9 @@ MonoBehaviour:
   _projectile: {fileID: 440472802871258600, guid: 322993982fc19084c93b7e7f4c7e9fef, type: 3}
   _firePoint: {fileID: 5230408409794695406}
   ammoCount: 1
+  shootSound: {fileID: 8300000, guid: 8b36291e67b252f48a75f8a0928b06db, type: 3}
+  audioSource: {fileID: 0}
+  lifetime: 10
 --- !u!1 &4214238490247625164
 GameObject:
   m_ObjectHideFlags: 0

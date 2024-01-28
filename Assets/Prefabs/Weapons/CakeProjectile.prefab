@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 60
-  hitSound: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: 5de4deecf00dfea4da095ba93920bd09, type: 3}
   audioSource: {fileID: 0}
   swooshSound: {fileID: 0}
   lifetime: 5
