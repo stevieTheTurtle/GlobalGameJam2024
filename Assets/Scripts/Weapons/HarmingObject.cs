@@ -6,11 +6,11 @@ using UnityEngine;
 ///</summary>
 public class HarmingObject : MonoBehaviour
 {
-    [SerializeField] private float Damage = 10f;
+    [SerializeField] protected float Damage = 10f;
     [SerializeField] protected AudioClip hitSound;
     [SerializeField] protected AudioSource audioSource;
     
-    private void Start()
+    protected virtual void Start()
     {
         if (this.GetComponentInChildren<Collider>() == null)
             Debug.LogError("No collider found on " + this.gameObject.name + " or its children.");
@@ -36,7 +36,7 @@ public class HarmingObject : MonoBehaviour
         }
     }
     
-    private void PlayHitSound()
+    protected void PlayHitSound()
     {
         audioSource.clip = hitSound;
         audioSource.Play();
