@@ -85,9 +85,9 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("Attacking");
                 weapon.Attack();
             }
-            if (HoldedItem != null && HoldedItem.GetTransform().GetComponentInChildren<MeleeWeapon>())
+            else
             {
-                _animator.SetTrigger("Attack");
+                _animator.SetTrigger("MeleeAttack");
             }
         }
     }

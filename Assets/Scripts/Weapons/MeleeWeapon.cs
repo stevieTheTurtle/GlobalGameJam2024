@@ -24,12 +24,6 @@ public class MeleeWeapon : HarmingObject, IWeapon
         //TODO: play release sound??
     }
 
-    private void PlayHitSound()
-    {
-        audioSource.clip = hitSound;
-        audioSource.Play();
-    }
-
     //played by player controller when attacking
     public void PlayAttackSound()
     {
