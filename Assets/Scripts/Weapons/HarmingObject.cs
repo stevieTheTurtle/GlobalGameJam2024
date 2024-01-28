@@ -32,7 +32,7 @@ public class HarmingObject : MonoBehaviour
             //Play hit sound
             PlayHitSound();
             //Degrade weapon???
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
         }
     }
     

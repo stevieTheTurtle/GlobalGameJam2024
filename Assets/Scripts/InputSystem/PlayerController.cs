@@ -85,6 +85,10 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("Attacking");
                 weapon.Attack();
             }
+            else
+            {
+                _animator.SetTrigger("MeleeAttack");
+            }
         }
     }
 
