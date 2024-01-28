@@ -2,16 +2,37 @@ using UnityEngine;
 
 public class RangeWeapon : MonoBehaviour, IWeapon, ICollectable
 {
+
     [SerializeField] private GameObject _projectile;
     [SerializeField] private Transform _firePoint; // Position from which projectiles are fired
     [SerializeField] private int ammoCount = 1;
-    
+    [SerializeField] protected AudioClip shootSound;
+    [SerializeField] protected AudioSource audioSource;
+    [SerializeField] private float lifetime = 10f; // Lifetime of the projectile in seconds
+
+
+    void Start()
+    {
+        // Initialize the AudioSource component
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            // Add an AudioSource if it doesn't exist
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+
+        // Destroy the projectile after its lifetime has elapsed
+        Destroy(gameObject, lifetime);
+    }
+
     public void Attack()
     {
         // Instantiate the projectile at the fire point's position and rotation
         if (_projectile != null && _firePoint != null)
         {
             Instantiate(_projectile, _firePoint.position, _firePoint.rotation);
+            audioSource.clip = shootSound;
+            audioSource.Play();
         }
         else
         {
