@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,44 +11,55 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float dashDuration = 0.5f; // Duration of the dash
     [SerializeField] private float dashSpeedMultiplier = 3f; // Speed multiplier during dash
     [SerializeField] private float dashCooldown = 2f; // Cooldown duration for dash
+    
+    private PlayerManager _playerManager;
+    private CharacterController _controller;
+    private Animator _animator;
+    private Vector3 _playerVelocity;
+    private Vector2 _movement;
+    private Vector2 _lookAt;
+    private float _speedCoefficient;
+    private bool _isDashing;
+    private float _lastDashTime;
 
-    private CharacterController controller;
-    private Vector3 playerVelocity;
-    private Vector2 movement;
-    private Vector2 lookAt;
-    private float speedCoefficient;
-    private bool isDashing;
-    private float lastDashTime;
-
-    private List<CollectTrigger> overlappingCollectTriggers;
-    public bool isTryingToInteract { get; set; }
+    private List<CollectTrigger> _overlappingCollectTriggers;
+    public bool IsTryingToInteract { get; set; }
 
     public ICollectable HoldedItem;
-    public bool IsHoldingSomething;
+    public bool isHoldingSomething;
 
     private void Start()
     {
-        controller = gameObject.AddComponent<CharacterController>();
-        overlappingCollectTriggers = new List<CollectTrigger>();
-        isTryingToInteract = false;
-        isDashing = false;
-        lastDashTime = -dashCooldown; // Initialize to allow immediate dashing
+        _playerManager = GetComponent<PlayerManager>();
+        _animator = GetComponent<Animator>();
+        _controller = gameObject.AddComponent<CharacterController>();
+        
+        _overlappingCollectTriggers = new List<CollectTrigger>();
+        IsTryingToInteract = false;
+        _isDashing = false;
+        _lastDashTime = -dashCooldown; // Initialize to allow immediate dashing
+    }
+    
+    public void OnTryToBeSerious(InputAction.CallbackContext context)
+    {
+        _playerManager.ReduceLaughTimer();
     }
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        movement = context.ReadValue<Vector2>();
+        _movement = context.ReadValue<Vector2>();
+        _animator.SetFloat("MoveSpeed", _movement.magnitude * 5f);
     }
 
     public void OnLookAt(InputAction.CallbackContext context)
     {
-        lookAt = context.ReadValue<Vector2>();
+        _lookAt = context.ReadValue<Vector2>();
     }
 
     public void OnDash(InputAction.CallbackContext context)
     {
         // Check if the dash command was performed, if the cooldown has elapsed, and if the player is moving
-        if (context.performed && Time.time - lastDashTime >= dashCooldown && movement != Vector2.zero)
+        if (context.performed && Time.time - _lastDashTime >= dashCooldown && _movement != Vector2.zero)
         {
             StartCoroutine(Dash());
         }
@@ -56,12 +68,12 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator Dash()
     {
-        isDashing = true;
-        lastDashTime = Time.time;
+        _isDashing = true;
+        _lastDashTime = Time.time;
 
         yield return new WaitForSeconds(dashDuration);
 
-        isDashing = false;
+        _isDashing = false;
     }
 
     public void OnAttack(InputAction.CallbackContext context)
@@ -81,24 +93,24 @@ public class PlayerController : MonoBehaviour
         if (context.performed)
         {
             Debug.Log("TryingToInteract");
-            isTryingToInteract = true;
+            IsTryingToInteract = true;
         }
     }
 
     void Update()
     {
-        Vector3 move = new Vector3(movement.x, 0, movement.y);
-        Vector3 lookingAt = new Vector3(lookAt.x, 0, lookAt.y);
+        Vector3 move = new Vector3(_movement.x, 0, _movement.y);
+        Vector3 lookingAt = new Vector3(_lookAt.x, 0, _lookAt.y);
 
-        speedCoefficient = Mathf.Cos(Vector3.Angle(move, gameObject.transform.forward) / 3f / 180f * Mathf.PI);
+        _speedCoefficient = Mathf.Cos(Vector3.Angle(move, gameObject.transform.forward) / 3f / 180f * Mathf.PI);
 
-        if (isDashing)
+        if (_isDashing)
         {
-            controller.Move(move * Time.deltaTime * playerSpeed * dashSpeedMultiplier);
+            _controller.Move(move * Time.deltaTime * playerSpeed * dashSpeedMultiplier);
         }
         else
         {
-            controller.Move(move * Time.deltaTime * playerSpeed * speedCoefficient);
+            _controller.Move(move * Time.deltaTime * playerSpeed * _speedCoefficient);
 
             if (lookingAt != Vector3.zero)
             {
@@ -106,17 +118,17 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (isTryingToInteract && overlappingCollectTriggers.Count > 0)
+        if (IsTryingToInteract && _overlappingCollectTriggers.Count > 0)
         {
-            Debug.Log("Interacting with "+overlappingCollectTriggers[0].gameObject.name);
-            overlappingCollectTriggers[0].Interact(this.GetComponent<PlayerManager>());
-            overlappingCollectTriggers.RemoveAt(0);
+            Debug.Log("Interacting with "+_overlappingCollectTriggers[0].gameObject.name);
+            _overlappingCollectTriggers[0].Interact(this.GetComponent<PlayerManager>());
+            _overlappingCollectTriggers.RemoveAt(0);
         }
 
-        isTryingToInteract = false;
+        IsTryingToInteract = false;
 
         HoldedItem = GetComponentInChildren<ICollectable>();
-        IsHoldingSomething = HoldedItem != null;
+        isHoldingSomething = HoldedItem != null;
 
     }
 
@@ -127,8 +139,8 @@ public class PlayerController : MonoBehaviour
         if (collectTrigger != null)
         {
             //Debug.Log("adding "+collectTrigger.gameObject.name+" to overlapping collect triggers");
-            if(!overlappingCollectTriggers.Contains(collectTrigger))
-                overlappingCollectTriggers.Add(collectTrigger);
+            if(!_overlappingCollectTriggers.Contains(collectTrigger))
+                _overlappingCollectTriggers.Add(collectTrigger);
         }
     }
 
@@ -139,8 +151,8 @@ public class PlayerController : MonoBehaviour
         if (collectTrigger != null)
         {
             //Debug.Log("removing "+collectTrigger.gameObject.name+" to overlapping collect triggers");
-            if(overlappingCollectTriggers.Contains(collectTrigger))
-                overlappingCollectTriggers.Remove(collectTrigger);
+            if(_overlappingCollectTriggers.Contains(collectTrigger))
+                _overlappingCollectTriggers.Remove(collectTrigger);
         }
     }
 }

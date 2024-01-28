@@ -185,6 +185,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "LaughMap",
+            "id": "38b323df-3080-4069-ad73-727969347b60",
+            "actions": [
+                {
+                    "name": "TryToBeSerious",
+                    "type": "Button",
+                    "id": "b8853cde-7335-4fca-a914-de5e9bcc9206",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "5cda56f0-4f7f-40ed-8de4-4eb2baf45bea",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TryToBeSerious",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
