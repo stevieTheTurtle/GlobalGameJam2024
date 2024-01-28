@@ -14,6 +14,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
 
     private PlayerInput _playerInput; // Reference to the PlayerInput component
     private bool isLaughing = false;
+    public bool lost = false;
 
     void Start()
     {

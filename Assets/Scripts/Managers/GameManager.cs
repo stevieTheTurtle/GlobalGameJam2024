@@ -4,14 +4,6 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
+    public List<PlayerManager> _playerManagers = new List<PlayerManager>(); // Initialize the list
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
 }
