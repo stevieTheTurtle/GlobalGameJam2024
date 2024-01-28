@@ -8,7 +8,6 @@ public class RangeWeapon : MonoBehaviour, IWeapon, ICollectable
     [SerializeField] private int ammoCount = 1;
     [SerializeField] protected AudioClip shootSound;
     [SerializeField] protected AudioSource audioSource;
-    [SerializeField] private float lifetime = 10f; // Lifetime of the projectile in seconds
 
 
     void Start()
@@ -21,8 +20,6 @@ public class RangeWeapon : MonoBehaviour, IWeapon, ICollectable
             audioSource = gameObject.AddComponent<AudioSource>();
         }
 
-        // Destroy the projectile after its lifetime has elapsed
-        Destroy(gameObject, lifetime);
     }
 
     public void Attack()
