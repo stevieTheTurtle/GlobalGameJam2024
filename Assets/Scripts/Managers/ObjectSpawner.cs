@@ -22,7 +22,7 @@ public class ObjectSpawner : MonoBehaviour
     
     void Update()
     {
-        timeCounter -= Time.deltaTime;
+        timeCounter -= Time.deltaTime * 1000f;
         
         if (timeCounter <= 0f)
         {
