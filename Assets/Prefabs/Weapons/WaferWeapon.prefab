@@ -48,10 +48,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _projectile: {fileID: 440472802871258600, guid: 245259fa5a07a4c4292a900330a626eb, type: 3}
   _firePoint: {fileID: 247076969477857496}
-  ammoCount: 10
+  ammoCount: 14
   shootSound: {fileID: 8300000, guid: 8b36291e67b252f48a75f8a0928b06db, type: 3}
   audioSource: {fileID: 0}
-  lifetime: 10
 --- !u!1 &2729730500293086814
 GameObject:
   m_ObjectHideFlags: 0

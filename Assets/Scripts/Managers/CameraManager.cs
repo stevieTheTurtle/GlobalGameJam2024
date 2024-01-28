@@ -19,6 +19,10 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private float maxCameraDistance = 60f;
 
     private List<Transform> _playerTransforms = new List<Transform>(); // Initialize the list
+    [SerializeField]
+    private Transform[] _spawnPoints = new Transform[4];
+    [SerializeField]
+    private int spawnPointIndex = 0;
 
     void Start()
     {
@@ -78,6 +82,17 @@ public class CameraManager : MonoBehaviour
         PlayerManager playermanager = playerInput.GetComponent<PlayerManager>();
         _playerTransforms.Add(playerInput.transform);
         _gameManager._playerManagers.Add(playermanager);
+        
+        playermanager.transform.position = _spawnPoints[spawnPointIndex].position;
+        if(spawnPointIndex == 0)
+            playermanager.GetComponentInChildren<Renderer>().material.color = Color.blue;
+        else if(spawnPointIndex == 1)
+            playermanager.GetComponentInChildren<Renderer>().material.color = Color.green;
+        else if(spawnPointIndex == 2)
+            playermanager.GetComponentInChildren<Renderer>().material.color = Color.red;
+        else if(spawnPointIndex == 3)
+            playermanager.GetComponentInChildren<Renderer>().material.color = Color.yellow;
+        spawnPointIndex++;
     }
 
     public void OnPlayerLeft(PlayerInput playerInput)

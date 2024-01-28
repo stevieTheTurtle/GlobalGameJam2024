@@ -149,13 +149,13 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.70000076
-        inSlope: -1.8766793
-        outSlope: -1.8766793
+        value: 0.4999962
+        inSlope: -0.35073796
+        outSlope: -0.35073796
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.10500446
+        outWeight: 0.20139967
       - serializedVersion: 3
         time: 1
         value: 0
@@ -199,7 +199,7 @@ TrailRenderer:
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 10
-    numCapVertices: 3
+    numCapVertices: 10
     alignment: 0
     textureMode: 0
     textureScale: {x: 1, y: 1}
@@ -577,7 +577,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 4
@@ -1016,9 +1016,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 10
-  hitSound: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: 11fbdbcdc39f4eb49b3ded8d7c427978, type: 3}
   audioSource: {fileID: 0}
-  attackSound: {fileID: 0}
+  attackSound: {fileID: 8300000, guid: 349c89d77fc170d439e6a79e99f5be32, type: 3}
   _colliders:
   - {fileID: 5288005515974723185}
   - {fileID: 1601008006092523424}
