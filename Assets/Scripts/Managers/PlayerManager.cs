@@ -10,7 +10,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
     [SerializeField] private float laughTimeReuction;
     [SerializeField] private float laughTimer;
 
-    [SerializeField] private float _currentHealth;
+    [SerializeField] public float _currentHealth;
 
     private PlayerInput _playerInput; // Reference to the PlayerInput component
     private bool isLaughing = false;
