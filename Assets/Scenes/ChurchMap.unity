@@ -310,7 +310,7 @@ MonoBehaviour:
   - {fileID: 1920008502}
   - {fileID: 1627064861}
   - {fileID: 785593516}
-  timerMilliseconds: 4000
+  timerMilliseconds: 2000
 --- !u!82 &66158208
 AudioSource:
   m_ObjectHideFlags: 0

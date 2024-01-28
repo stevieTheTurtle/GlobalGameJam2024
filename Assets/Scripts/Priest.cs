@@ -45,7 +45,7 @@ public class Priest : MonoBehaviour
         {
             foreach (PlayerManager playerManager in _gameManager._playerManagers)
             {
-                if (playerManager != null && playerManager._currentHealth == 0)
+                if (playerManager != null && playerManager._currentHealth <= 0)
                 {
                     _currentTarget = playerManager;
                     audioSource.clip = angrySound;

@@ -24,6 +24,8 @@ public class CollectTrigger : MonoBehaviour
             Debug.LogError("No collider found on " + this.gameObject.name + " or its children.");
         
         collider.isTrigger = true;
+        
+        Destroy(this.gameObject, 16f);
     }
 
     public void Interact(PlayerManager playerManager)

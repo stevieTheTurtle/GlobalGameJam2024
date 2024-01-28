@@ -78,7 +78,7 @@ MonoBehaviour:
   swooshSound: {fileID: 8300000, guid: 5b4d02bba2689494c831053f51c9ad83, type: 3}
   lifetime: 10
   _speed: 12
-  newObjectCollectTrigger: {fileID: 835983181181596884, guid: 38cbfb655acb8134e9e593a8e8a65259, type: 3}
+  newObjectCollectTrigger: {fileID: 835983181181596884, guid: c1993dcc18ac1f5468e3da1fa7a38523, type: 3}
   newObjectStickyVisual: {fileID: 5176262309851864777, guid: ac4b34a6e5d2b5246bab943558c868ff, type: 3}
   stickyVisualLifetime: 5
 --- !u!54 &6291433409695426153
