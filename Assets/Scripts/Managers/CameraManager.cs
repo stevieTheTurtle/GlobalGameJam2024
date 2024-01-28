@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 
 public class CameraManager : MonoBehaviour
 {
+    private GameManager _gameManager;
     private PlayerInputManager _playerInputManager;
     private Transform _centerOfView;
     [SerializeField] private CinemachineVirtualCamera virtualCamera; // Reference to the virtual camera
@@ -21,8 +22,8 @@ public class CameraManager : MonoBehaviour
 
     void Start()
     {
+        _gameManager = FindObjectOfType<GameManager>();
         _centerOfView = FindObjectOfType<CenterOfView>().transform;
-        // Assuming virtualCamera is assigned in the Inspector
         framingTransposer = virtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
 
     }
@@ -74,12 +75,16 @@ public class CameraManager : MonoBehaviour
 
     public void OnPlayerJoined(PlayerInput playerInput)
     {
+        PlayerManager playermanager = playerInput.GetComponent<PlayerManager>();
         _playerTransforms.Add(playerInput.transform);
+        _gameManager._playerManagers.Add(playermanager);
     }
 
     public void OnPlayerLeft(PlayerInput playerInput)
     {
+        PlayerManager playermanager = playerInput.GetComponent<PlayerManager>();
         _playerTransforms.Remove(playerInput.transform);
+        _gameManager._playerManagers.Remove(playermanager);
     }
 
     private void OnDestroy()
