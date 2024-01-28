@@ -49,7 +49,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -80,6 +80,18 @@ PrefabInstance:
     - target: {fileID: 440472802871258600, guid: 7cae1592053dcde4a9c466582acf423d, type: 3}
       propertyPath: m_Name
       value: WaferWeapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 4580813177152115713, guid: 7cae1592053dcde4a9c466582acf423d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4580813177152115713, guid: 7cae1592053dcde4a9c466582acf423d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4580813177152115713, guid: 7cae1592053dcde4a9c466582acf423d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4580813177152115713, guid: 7cae1592053dcde4a9c466582acf423d, type: 3}
       propertyPath: m_LocalPosition.x

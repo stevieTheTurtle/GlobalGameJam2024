@@ -4,7 +4,8 @@ public class RangeWeapon : MonoBehaviour, IWeapon, ICollectable
 {
     [SerializeField] private GameObject _projectile;
     [SerializeField] private Transform _firePoint; // Position from which projectiles are fired
-
+    [SerializeField] private int ammoCount = 1;
+    
     public void Attack()
     {
         // Instantiate the projectile at the fire point's position and rotation
@@ -15,6 +16,13 @@ public class RangeWeapon : MonoBehaviour, IWeapon, ICollectable
         else
         {
             Debug.LogError("Projectile or fire point not set for " + gameObject.name);
+        }
+
+        ammoCount--;
+
+        if (ammoCount <= 0)
+        {
+            Destroy(this.gameObject);
         }
     }
 
@@ -38,14 +46,5 @@ public class RangeWeapon : MonoBehaviour, IWeapon, ICollectable
         // Example: Detach weapon from player
         this.transform.parent = null;
     }
-
-    void Start()
-    {
-        // Initialization if needed
-    }
-
-    void Update()
-    {
-        // Update logic if needed
-    }
+    
 }
