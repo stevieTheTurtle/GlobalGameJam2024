@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.InputSystem;
+using UnityEngine.VFX;
 
 public class PlayerManager : MonoBehaviour, IDamageable
 {
@@ -77,6 +78,19 @@ public class PlayerManager : MonoBehaviour, IDamageable
         }
         
         laughTimer -= Time.deltaTime;
+
+        if (lost) // Assuming 'lost' is a condition you define somewhere
+        {
+            // Disable the Gameplay action map
+            _playerInput.actions.FindActionMap("Gameplay").Disable();
+
+            // Find and disable the child GameObject named "Visual"
+            Transform visualChild = transform.Find("Visual");
+            if (visualChild != null)
+            {
+                visualChild.gameObject.SetActive(false);
+            }
+        }
     }
 
     public void ReduceLaughTimer()
